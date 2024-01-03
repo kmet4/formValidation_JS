@@ -1,54 +1,59 @@
-let form = document.getElementById('form');
-form.addEventListener('submit', formSend);
-let sending = document.querySelector(".sendingMessage");
+document.addEventListener('DOMContentLoaded', () => {
+    let form = document.getElementById('form');
+    form.addEventListener('submit', formSend);
 
+    async function formSend(e) {
+        e.preventDefault();
 
-async function formSend(e) {
-    e.preventDefault();
+        let error = formValidate(form);
 
-    let error = formValidate(form);
+        // const data = new FormData(form);
 
-    const data = new FormData(form);
-
-    if (error === 0) {
-        alert('Отправка');
-        console.log(data);
-    }else {
-        alert('Заполните обязательные поля');
-    }
-}
-
-function formValidate(form) {
-    let errors = 0;
-
-    let formReq = document.querySelectorAll("._req");
-
-    for (let i = 0; i < formReq.length; i++) {
-        let input = formReq[i];
-        formRemoveError(input);
-
-        if(input.classList.contains('_email')){
-            if(emailTest(input)) {
-                formAddError(input);
-                errors++;
-            }
+        if (error.length === 0) {
+            alert('Отправка');
+            form.classList.add('_sending');
         }else {
-            if (input.value === '') {
-                formAddError(input);
-                errors++;
-            }
+            alert(error.join('\n'))
         }
     }
-    return errors;
-}
 
-function formAddError(input) {
-    input.classList.add('_error');
-}
-function formRemoveError(input) {
-    input.classList.remove('_error');
-}
+    function formValidate(form) {
+        let errors = [];
 
-function emailTest(input) {
-    return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
-}
+        let formReq = document.querySelectorAll("._req");
+
+
+        formReq.forEach((input) => {
+            formRemoveError(input);
+            if(input.classList.contains('_email') && emailTest(input)){
+                formAddError(input);
+                errors.push('Вы неправильно ввели почту!');
+            }
+            else if (input.classList.contains('_tel') && telTest(input)) {
+                formAddError(input);
+                errors.push('Вы неправильно ввели номер телефона!');
+            }else {
+                if (input.value === '') {
+                    formAddError(input);
+                    errors.push('Вы не заполнили поле!');
+                }
+            }
+        })
+        return errors;
+    }
+
+    function formAddError(input) {
+        
+        input.classList.add('_error');
+    }
+    function formRemoveError(input) {
+        input.classList.remove('_error');
+    }
+
+    function emailTest(input) {
+        return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
+    }
+    function telTest(input) {
+        return !/^\+\d{1,3}\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(input.value);
+    }
+});

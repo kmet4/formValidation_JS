@@ -1,8 +1,8 @@
-.wrapper{
+.wrapper {
     width: 500px;
     margin: 100px auto;
 }
-form{
+form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -16,13 +16,7 @@ label {
     margin-bottom: 10px;
     font-weight: 700;
 }
-.form__input{
-    padding: 10px 15px;
-    border-radius: 5px;
-    border: 1px solid #fff;
-    background-color: #333;
-    color: #fff;
-}
+.form__input,
 .form__select {
     padding: 10px 15px;
     border-radius: 5px;
@@ -30,7 +24,8 @@ label {
     background-color: #333;
     color: #fff;
 }
-.form__input:focus, .form__select:focus {
+.form__input:focus,
+.form__select:focus {
     box-shadow: 0 0 15px #7B68EE;
 }
 button {
