@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FormValidation</title>
+  <link rel="stylesheet" href="src/css/reset.css">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <form action="/apply/" method="POST" id="form">
+      <div class="title">Сообщить о проблеме</div>
+      <label>
+        Никнейм*:
+        <input class="form__input _req" type="text" name="name" id="name" placeholder="МамкинГеймер228" autofocus>
+      </label>
+      <label>
+        Почта*:
+        <input class="form__input _req _email" type="email" name="email" id="email" placeholder="mamkin@gamer.com">
+      </label>
+      <label>
+        Профессия:
+        <select class="form__select" name="device">
+          <option value="pc" selected>PC</option>
+          <option value="playstation">PlayStation</option>
+          <option value="xbox">Xbox</option>
+          <option value="nintendoswitch">Nintendo Switch</option>
+        </select>
+      </label>
+      <label>
+        Опишите проблему*:
+        <textarea class="form__input _req" name="problem" id="problem" placeholder=":("></textarea>
+      </label>
+      <label>
+        Фото проблемы:
+        <input class="form__fileinput" type="file" accept="image/jpeg" name="photo">
+      </label>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+  <script src="src/js/script.js"></script>
+</body>
+</html>
+
+
