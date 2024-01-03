@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let error = formValidate(form);
 
-        // const data = new FormData(form);
+        const data = new FormData(form);
 
         if (error.length === 0) {
             alert('Отправка');
             form.classList.add('_sending');
+            console.log(data);
         }else {
             alert(error.join('\n'))
         }
@@ -43,10 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function formAddError(input) {
-        
+        input.parentElement.classList.add('_error');
         input.classList.add('_error');
     }
     function formRemoveError(input) {
+        input.parentElement.classList.remove('_error');
         input.classList.remove('_error');
     }
 

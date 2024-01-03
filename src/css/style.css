@@ -37,6 +37,6 @@ button {
     font-weight: 700;
     font-size: 20px;
 }
-._error {
+.form__input._error {
     box-shadow: 0 0 15px #ff0000;
 }
